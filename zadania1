@@ -21,19 +21,17 @@ print(alist)
 sales = (100, 150, 80, 200, 120, 180, 90, 250, 110, 160, 130, 190)
 month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 df = pd.DataFrame({'Месяц': month, 'Продажи': sales})
-dfsrt = df.sortvl(by='Продажи', ascending=False)
+dfsrt = df.sort_values(by='Продажи', ascending=False)
 top3 = dfsrt['Месяц'][:3].tolist()
 print("Топ-3 месяца по продажам:", top3)
 
 basket = [('яблоко', 3, 50), ('груша', 2, 80), ('апельсин', 5, 40)]
-order = {}
-totals = 0
-for item in basket:
-    name, quantity, price = item
-    itemt = quantity * price
-    order[name] = itemt
-    totals += itemt
+order = {name: quantity * price for name, quantity, price in basket}
+totals = sum(order.values())
 print("Заказ:")
+for name, total in order.items():
+    print(f"{name}: {total}")
+print(f"Общая сумма чека: {totals}")
 for name, total in order.items():
     print(f"{name}: {total}")
 print(f"Общая сумма чека: {totals}")

@@ -1,0 +1,39 @@
+import numpy as np
+import pandas as pd
+
+word = 'Snake_Case'
+word_two = 'Camel'
+print(word_two + word[-4:])
+
+words = 'max_value_of_array'
+words = words.split('_')
+print(words[0]+words[1].capitalize()+words[2].capitalize()+words[3].capitalize())
+
+slits = ['a', 'b', 'b', 't', 'r', 'y', 'y', 'u', 'r', 'g', 'f', 'd', 'h', 'u', 'o']
+alist = []
+s = set()
+for i in slits:
+    if i not in s:
+        alist.append(i)
+        s.add(i)
+print(alist)
+
+sales = (100, 150, 80, 200, 120, 180, 90, 250, 110, 160, 130, 190)
+month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+df = pd.DataFrame({'Месяц': month, 'Продажи': sales})
+dfsrt = df.sortvl(by='Продажи', ascending=False)
+top3 = dfsrt['Месяц'][:3].tolist()
+print("Топ-3 месяца по продажам:", top3)
+
+basket = [('яблоко', 3, 50), ('груша', 2, 80), ('апельсин', 5, 40)]
+order = {}
+totals = 0
+for item in basket:
+    name, quantity, price = item
+    itemt = quantity * price
+    order[name] = itemt
+    totals += itemt
+print("Заказ:")
+for name, total in order.items():
+    print(f"{name}: {total}")
+print(f"Общая сумма чека: {totals}")

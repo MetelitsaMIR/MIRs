@@ -1,14 +1,13 @@
-import numpy as np
 import pandas as pd
-
+# 1 Задание
 word = 'Snake_Case'
 word_two = 'Camel'
 print(word_two + word[-4:])
-
+# 2 Задание
 words = 'max_value_of_array'
 words = words.split('_')
 print(words[0]+words[1].capitalize()+words[2].capitalize()+words[3].capitalize())
-
+# 3 Задание
 slits = ['a', 'b', 'b', 't', 'r', 'y', 'y', 'u', 'r', 'g', 'f', 'd', 'h', 'u', 'o']
 alist = []
 s = set()
@@ -17,14 +16,14 @@ for i in slits:
         alist.append(i)
         s.add(i)
 print(alist)
-
+# 4 Задание
 sales = (100, 150, 80, 200, 120, 180, 90, 250, 110, 160, 130, 190)
 month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 df = pd.DataFrame({'Месяц': month, 'Продажи': sales})
 dfsrt = df.sort_values(by='Продажи', ascending=False)
 top3 = dfsrt['Месяц'][:3].tolist()
 print("Топ-3 месяца по продажам:", top3)
-
+# 5 Задание
 basket = [('яблоко', 3, 50), ('груша', 2, 80), ('апельсин', 5, 40)]
 order = {name: quantity * price for name, quantity, price in basket}
 totals = sum(order.values())

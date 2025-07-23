@@ -1,0 +1,19 @@
+# 1 Задание
+orders = pd.read_csv('group_orders.csv')
+group_city = orders.groupby('city').agg({'quantity' : 'sum'})
+print(group_city)
+# 2 Задание
+average_order_amount = orders.groupby("city")["total"].mean().reset_index(name="avg_sum")
+print(average_order_amount)
+# 3 Задание
+product_group = orders.groupby("product")["quantity"].sum().reset_index(name="sum"))
+product_group2 = product_group.sort_values(by = "sum", ascending=False).iloc[0]
+print(product_group2)
+# 4 Задание
+orders['order_date'] = pd.to_datetime(orders['order_date'], errors='coerce')
+orders['order_month'] = orders['order_date'].dt.to_period('M')
+month_group = orders.groupby('order_month')['total'].sum().reset_index(name='summ')
+print(month_group)
+# 5 Задание
+group_order = orders.groupby('city')['total'].mean().reset_index(name='avgs").sort_values(by='avgs', ascending=False)
+print(group_order.head(3))

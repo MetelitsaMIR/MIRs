@@ -1,0 +1,33 @@
+import pandas as pd
+
+orders_file = pd.read_csv('orders_new.csv')
+users_file = pd.read_csv('users_new.csv')
+
+# 1 Задание
+north_users = users_df[(users_df['region'] == 'North') & (users_df['age'] < 30)]
+orders_count = orders_df[orders_df['user_id'].isin(north_users['user_id'])]['user_id'].value_counts().reset_index()
+orders_count.columns = ['user_id', 'order_count']
+result1 = pd.merge(north_users, orders_count, on='user_id', how='left').fillna(0)
+print(result1[['name', 'order_count']])
+
+# 2 Задание
+orders_df['total'] = orders_df['price'] * orders_df['quantity']
+result2 = orders_df.query('product == "C" and total > 250')
+print(result2)
+
+# 3 Задание
+result3 = orders_df['product'].value_counts()
+print(result3)
+
+# 4 Задание
+result4 = pd.pivot_table(orders_df, values='total', index='region', columns='product', aggfunc='sum')
+print(result4)
+
+# 5 Задание
+orders_per_user = orders_df['user_id'].value_counts()
+multiple_orders = orders_per_user[orders_per_user > 1].index
+users_with_multiple_orders = users_df[users_df['user_id'].isin(multiple_orders)][['user_id', 'name']]
+order_count = orders_df[orders_df['user_id'].isin(multiple_orders)]['user_id'].value_counts().reset_index()
+order_count.columns = ['user_id', 'order_count']
+result5 = pd.merge(users_with_multiple_orders, order_count, on='user_id', how='left')
+print(result5[['name', 'order_count']])

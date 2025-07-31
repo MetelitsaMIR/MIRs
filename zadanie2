@@ -1,34 +1,41 @@
 import pandas as pd
+
 # 1 задание
 df = pd.read_csv('orders.csv', sep=',', encoding='utf-8')
 df['order_date'] = pd.to_datetime(df['order_date'], errors= 'coerce')
 filter_df = df[(df['total'] >=30000) & (df['total'] <= 40000)]
 filter_df = filter_df[filter_df['order_date'] >= '2023-01-01']
 print(filter_df[['order_id']])
+
 # 2 задание
 filter_orders = orders[(orders['customer_id'] >= 68) & (orders['customer_id'] <= 88)]
 filter_orders = filter_orders[(filter_orders['order_date'] >= '2022-01-01') &
                                 (filter_orders['order_date'] <= '2022-12-31')]
 filter_two = filter_orders.head(11).tail(6)
 print(filter_two[['order_id', 'total']])
+
 # 3 задание
 products = pd.read_csv('products.csv', sep=',', encoding='utf-8')
 print(products.head())
 filter_prod = products[(products['price'] < 500) & (products['volume_ml'] == 5)]
 print(filter_prod [['product_name', 'price']])
+
 # 4 задание
 customers = pd.read_csv('customers.csv', sep=',', encoding='utf-8')
 filter_cust = customers[(customers['gender'] == 'F') & (customers['birth_date'] < '1995-01-01')]
 print(filter_cust[['customer_id', 'first_name', 'last_name', 'birth_date']])
+
 # 5 задание
 orders = pd.read_csv('orders.csv', sep=',', encoding='utf-8')
 filter_ord = orders[(orders['customer_id'] >= 10) & (orders['customer_id'] <= 20) & (orders['total'] > 8000)]
 print(filter_ord[['order_id', 'customer_id', 'total']])
+
 # 6 задание
 orders = pd.read_csv('orders.csv', sep=',', encoding='utf-8')
 orders['order_date'] = pd.to_datetime(orders['order_date'], errors='coerce')
 filtered_orders = orders[(orders['total'] >= 10000) & (orders['total'] <= 15000) & (orders['order_date'].dt.year == 2023)]
 print(filtered_orders[['order_id']])
+
 # 7 задание
 orders = pd.read_csv('orders.csv', sep=',', encoding='utf-8')
 customers = pd.read_csv('customers.csv', sep=',', encoding='utf-8')
@@ -36,6 +43,7 @@ customers['birth_date'] = pd.to_datetime(customers['birth_date'], errors='coerce
 customers_1990 = customers[customers['birth_date'].dt.year == 1990]
 merged_orders = pd.merge(orders, customers_1990, on='customer_id', how='inner')
 print(merged_orders[['order_id', 'customer_id']])
+
 # 8 задание
 orders = pd.read_csv('orders.csv', sep=',', encoding='utf-8')
 orders['order_date'] = pd.to_datetime(orders['order_date'], errors='coerce')

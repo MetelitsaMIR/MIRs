@@ -1,3 +1,5 @@
+import pandas as pd
+
 Задание 1
 merged_df = pd.merge(contacts, customers, on='customer_id')
 merged_df = pd.merge(merged_df, orders, on='order_id')
@@ -7,11 +9,13 @@ filtered_df['order_date'] = pd.to_datetime(filtered_df['order_date'])
 filtered_df = filtered_df[(filtered_df['order_date'].dt.year == 2023) & (filtered_df['order_date'].dt.quarter <= 2)]
 result_df = filtered_df[['order_id', 'total']]
 total_sales = result_df['total'].sum()
+
 Задание 2
 filtered_data = merged_df.query("registration_year >= 2022 and order_year == 2023 and total > 30000")
 filtered_data['full_name'] = filtered_data['first_name'] + ' ' + filtered_data['last_name']
 result_df = filtered_data[['full_name', 'total']]
 num_sales = len(result_df)
+
 Задание 3
 filtered_user_data = merged_df[merged_df['order_date'].dt.year.isin([2022, 2023])]
 gender_counts = filtered_user_data['gender'].value_counts()

@@ -7,7 +7,7 @@ users_file = pd.read_csv('users_new.csv')
 north_users = users_df[(users_df['region'] == 'North') & (users_df['age'] < 30)]
 orders_count = orders_df[orders_df['user_id'].isin(north_users['user_id'])]['user_id'].value_counts().reset_index()
 orders_count.columns = ['user_id', 'order_count']
-result1 = pd.merge(north_users, orders_count, on='user_id', how='left').fillna(0)
+result1 = pd.merge(north_users, orders_count, on='user_id', how='left')
 print(result1[['name', 'order_count']])
 
 # 2 Задание

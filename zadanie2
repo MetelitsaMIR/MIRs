@@ -8,7 +8,7 @@ filter_df = filter_df[filter_df['order_date'] >= '2023-01-01']
 print(filter_df[['order_id']])
 
 # 2 задание
-filter_orders = orders[(orders['customer_id'] >= 68) & (orders['customer_id'] <= 88)]
+filter_orders = df[(df['customer_id'] >= 68) & (df['customer_id'] <= 88)]
 filter_orders = filter_orders[(filter_orders['order_date'] >= '2022-01-01') &
                                 (filter_orders['order_date'] <= '2022-12-31')]
 filter_two = filter_orders.head(11).tail(6)
